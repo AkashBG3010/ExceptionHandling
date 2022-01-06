@@ -1,5 +1,7 @@
 package com.bridgeLabz;
 
+import com.bridgeLabz.MoodAnalysisException.ExceptionType;
+
 public class MoodAnalyser {
 	
 	String message;
@@ -8,9 +10,12 @@ public class MoodAnalyser {
 		this.message = message;
 	}
 
-	public String analyseMood() {
+	public String analyseMood() throws MoodAnalysisException {
 		try {
-			if (message.contains("Sad")) {
+			if (message.length() == 0) {
+				throw new MoodAnalysisException(ExceptionType.WHEN_EMPTY, "Invalid Input. Empty input is Not Allowed");
+			}
+			if (this.message.contains("Sad")) {
 				return "SAD";
 			}
 			else {
